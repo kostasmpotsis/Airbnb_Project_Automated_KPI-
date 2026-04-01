@@ -1,0 +1,14 @@
+import os
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+from urllib.parse import urlparse, parse_qs
+from base64 import urlsafe_b64decode
+from bs4 import BeautifulSoup
+from datetime import datetime, timedelta
+import snowflake.connector
+from google.colab import userdata
+import re
+from datetime import datetime
+import pandas as pd # Import pandas for pd.isna
