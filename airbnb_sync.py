@@ -381,6 +381,14 @@ df_final_sorted['Real_Host_Payout'] = df_final_sorted['Host Payout'] - df_final_
 # ═════════════════════════════════════════════════════════════════════════════
 
 df_up = df_final_sorted.copy()
+
+
+# Αφαίρεση εσωτερικών στηλών που δεν υπάρχουν στο Snowflake
+df_up = df_up.drop(columns=[c for c in ['_gmail_id', '_GMAIL_ID'] if c in df_up.columns], errors='ignore')
+
+
+
+
 df_up = df_up.sort_values(
     by=['Check-in Date Datetime', 'Check-out Date Datetime'], ascending=True
 ).reset_index(drop=True)
