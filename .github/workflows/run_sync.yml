@@ -1,4 +1,4 @@
-name: Airbnb AutoSync to Snowflake
+name:Airbnb_Project_Automated_KPI-
 
 on:
   schedule:
