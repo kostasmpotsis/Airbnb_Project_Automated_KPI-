@@ -1,10 +1,13 @@
-name: Airbnb_Project_Automated_KPI-
+name: Airbnb_Project_Automated_KPI
 
 on:
   schedule:
     # Τρέχει κάθε 3 μέρες στις 06:00 UTC (8:00 Ελλάδα)
     - cron: '0 6 */3 * *'
-  workflow_dispatch:  # Επιτρέπει και χειροκίνητη εκτέλεση από το GitHub UI
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true   # Διορθώνει το Node.js warning
 
 jobs:
   sync:
@@ -31,11 +34,19 @@ jobs:
             pandas \
             openpyxl
 
-      # Γράφει τα secrets στο filesystem ώστε ο Python κώδικας να τα βρει
       - name: Write credentials from secrets
         run: |
           echo '${{ secrets.GMAIL_CREDENTIALS_JSON }}' > credentials.json
           echo '${{ secrets.GMAIL_TOKEN_JSON }}' > token.json
+
+      # Ελέγχει ότι το token.json δεν είναι κενό πριν τρέξει το script
+      - name: Validate token.json
+        run: |
+          if [ ! -s token.json ]; then
+            echo "❌ ERROR: token.json is empty! Check the GMAIL_TOKEN_JSON secret."
+            exit 1
+          fi
+          python3 -c "import json; json.load(open('token.json'))" && echo "✅ token.json is valid JSON" || (echo "❌ token.json is not valid JSON"; exit 1)
 
       - name: Run sync script
         env:
