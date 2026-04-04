@@ -1,4 +1,4 @@
-name:Airbnb_Project_Automated_KPI-
+name: Airbnb_Project_Automated_KPI-
 
 on:
   schedule:
