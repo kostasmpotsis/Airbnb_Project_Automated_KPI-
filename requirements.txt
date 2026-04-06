@@ -1,21 +1,6 @@
-import os
-from google.auth.transport.requests import Request
-from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
-from googleapiclient.discovery import build
-from urllib.parse import urlparse, parse_qs
-from base64 import urlsafe_b64decode
-from bs4 import BeautifulSoup
-from datetime import datetime, timedelta
-import snowflake.connector
-from google.colab import userdata
-import re
-from datetime import datetime
-import pandas as pd # Import pandas for pd.isna
-import streamlit as st
-import pandas as pd
-import plotly.express as px
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-import snowflake.connector
-import os
+streamlit
+pandas
+plotly
+snowflake-connector-python
+google-api-python-client
+beautifulsoup4
