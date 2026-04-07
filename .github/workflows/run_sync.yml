@@ -3,7 +3,7 @@ name: Airbnb_Project_Automated_KPI
 on:
   schedule:
     # Τρέχει κάθε 3 μέρες στις 06:00 UTC (8:00 Ελλάδα)
-    - cron: '0 6 */3 * *'
+    - cron: '0 6 1 * *'
   workflow_dispatch:
 
 env:
